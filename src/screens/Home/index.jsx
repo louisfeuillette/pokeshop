@@ -11,6 +11,8 @@ import {
   Card,
   Alert,
   Chip,
+  ImageList,
+  ImageListItem,
 } from "@mui/material";
 
 import {
@@ -21,7 +23,7 @@ import {
   getPokemonTotalCount,
 } from "../../features/fetch/pokemonSlice";
 
-const pageSize = 10;
+const pageSize = 6;
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -60,13 +62,17 @@ const Home = () => {
             <Typography variant="h1" sx={{ marginY: 2 }}>
               Pokemon List
             </Typography>
-            <Box
-              id="tototo"
-              sx={{ flexGrow: 1, display: "flex", alignItems: "center" }}
-            >
-              <Stack spacing={3}>
+            <Box sx={{ flexGrow: 1, display: "flex", alignItems: "center" }}>
+              <Stack
+                direction="row"
+                sx={{ flexWrap: "wrap", justifyContent: "center" }}
+              >
                 {pokemons.map((p, i) => (
-                  <Card key={i}>{p.name}</Card>
+                  <img
+                    key={i}
+                    src={p.images.small}
+                    style={{ margin: "1.5rem 3rem" }}
+                  />
                 ))}
               </Stack>
             </Box>

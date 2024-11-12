@@ -14,7 +14,7 @@ export const fetchPokemon = createAsyncThunk(
   "pokemon/fetchPokemon",
   async ({ page }) => {
     const response = await ky
-      .get(`${API_URL}/cards?q=set.name:"151"&pageSize=10&page=${page}`)
+      .get(`${API_URL}/cards?q=set.name:"151"&pageSize=6&page=${page}`)
       .json();
     console.log({ response });
     return { data: response?.data, totalCount: response?.totalCount };
