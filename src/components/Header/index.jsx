@@ -1,15 +1,19 @@
+import { useSelector } from "react-redux";
+
 import { Box, Typography, Stack, Badge, IconButton } from "@mui/material";
 import { FaCartShopping } from "react-icons/fa6";
 
-const Header = ({ cart }) => {
+import { getCartItems } from "../../features/cart/carteSlice";
+
+const Header = () => {
+  const cart = useSelector(getCartItems);
+
   const cartPrice = cart.reduce((acc, curr) => {
     return acc + curr.cardmarket.prices.averageSellPrice;
   }, 0);
 
-  console.log(cartPrice);
-
   return (
-    <Box sx={{ flexGrow: 1, width: "100vw" }}>
+    <Box sx={{ flexGrow: 1, width: "100vw", backgroundColor: "#242424" }}>
       <Stack
         direction="row"
         sx={{
