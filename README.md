@@ -1,12 +1,12 @@
-POKESHOP  
+POKESHOP
 
 [x] recuperation de la données API  
 [x] front design  
 [x] pagination  
-[] ajouter retirer items panier  
-[] formule (utils) pour prix d'un item  
-[] voir le nombre de cartes panier + prix  
+[x] voir le nombre de cartes panier
+[x] voir le prix du panier
 [] page detail du panier  
+[] ajouter retirer items panier
 
 Les + bonus  
 [] application testé  

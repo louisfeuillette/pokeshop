@@ -28,6 +28,7 @@ const Home = () => {
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
   const [shoppingCart, setShoppingCart] = useState([]);
+  console.log(shoppingCart);
 
   useEffect(() => {
     dispatch(fetchPokemon({ page }));
@@ -63,7 +64,7 @@ const Home = () => {
           </Box>
         ) : (
           <>
-            <Header cartQuantity={shoppingCart.length} />
+            <Header cart={shoppingCart} />
             <Box sx={{ flexGrow: 1, display: "flex", alignItems: "center" }}>
               <Stack
                 direction="row"
@@ -73,7 +74,11 @@ const Home = () => {
                   <img
                     key={i}
                     src={p.images.small}
-                    style={{ margin: "1.5rem 3rem", cursor: "pointer" }}
+                    style={{
+                      margin: "1.5rem 3rem",
+                      cursor: "pointer",
+                      "&:hover": { scale: "1.04" },
+                    }}
                     onClick={() => handleAddCart(p)}
                   />
                 ))}
