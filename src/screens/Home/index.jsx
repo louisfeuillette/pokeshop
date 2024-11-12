@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import {
@@ -10,6 +10,7 @@ import {
   Stack,
   Card,
   Alert,
+  Chip,
 } from "@mui/material";
 
 import {
@@ -17,18 +18,33 @@ import {
   getPokemonError,
   getPokemonList,
   getPokemonStatus,
+  getPokemonTotalCount,
 } from "../../features/fetch/pokemonSlice";
+
+const pageSize = 10;
 
 const Home = () => {
   const dispatch = useDispatch();
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
-    dispatch(fetchPokemon());
-  }, []);
+    dispatch(fetchPokemon({ page }));
+  }, [page]);
 
   const pokemons = useSelector(getPokemonList);
+  const totalCount = useSelector(getPokemonTotalCount);
   const status = useSelector(getPokemonStatus);
   const error = useSelector(getPokemonError);
+
+  const totalPages = Math.ceil(totalCount / pageSize);
+
+  const handlePrevious = () => {
+    setPage((prevPage) => prevPage - 1);
+  };
+
+  const handleNext = () => {
+    setPage((prevPage) => prevPage + 1);
+  };
 
   return (
     <>
@@ -54,9 +70,26 @@ const Home = () => {
                 ))}
               </Stack>
             </Box>
-            <Stack direction="row" spacing={2} sx={{ marginBottom: 5 }}>
-              <Button variant="contained">previous</Button>
-              <Button variant="contained">next</Button>
+            <Stack
+              direction="row"
+              spacing={2}
+              sx={{ alignItems: "center", marginBottom: 5 }}
+            >
+              <Button
+                variant="contained"
+                onClick={handlePrevious}
+                disabled={page === 1}
+              >
+                previous
+              </Button>
+              <Chip label={page} />
+              <Button
+                variant="contained"
+                onClick={handleNext}
+                disabled={page === totalPages}
+              >
+                next
+              </Button>
             </Stack>
           </>
         )}

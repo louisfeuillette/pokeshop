@@ -1,7 +1,8 @@
 POKESHOP  
 
 [x] recuperation de la données API  
-[] front design  
+[x] front design  
+[x] pagination  
 [] ajouter retirer items panier  
 [] formule (utils) pour prix d'un item  
 [] voir le nombre de cartes panier + prix  

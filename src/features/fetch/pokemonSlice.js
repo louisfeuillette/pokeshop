@@ -7,16 +7,17 @@ const initialState = {
   cards: [],
   status: "idle",
   error: "",
+  totalCount: null,
 };
 
 export const fetchPokemon = createAsyncThunk(
   "pokemon/fetchPokemon",
-  async () => {
+  async ({ page }) => {
     const response = await ky
-      .get(`${API_URL}/cards?q=set.name:"151"&pageSize=10&page=1`)
+      .get(`${API_URL}/cards?q=set.name:"151"&pageSize=10&page=${page}`)
       .json();
     console.log({ response });
-    return response?.data;
+    return { data: response?.data, totalCount: response?.totalCount };
   }
 );
 
@@ -31,8 +32,8 @@ const pokemonSlice = createSlice({
       })
       .addCase(fetchPokemon.fulfilled, (state, action) => {
         state.status = "succeeded";
-        console.log({ payload: action.payload });
-        state.cards = action.payload;
+        state.cards = action.payload.data;
+        state.totalCount = action.payload.totalCount;
       })
       .addCase(fetchPokemon.rejected, (state, action) => {
         state.status = "failed";
@@ -42,6 +43,7 @@ const pokemonSlice = createSlice({
 });
 
 export const getPokemonList = (state) => state.pokemon.cards;
+export const getPokemonTotalCount = (state) => state.pokemon.totalCount;
 export const getPokemonError = (state) => state.pokemon.error;
 export const getPokemonStatus = (state) => state.pokemon.status;
 
