@@ -8,12 +8,11 @@ import {
   Typography,
   Button,
   Stack,
-  Card,
   Alert,
   Chip,
-  ImageList,
-  ImageListItem,
 } from "@mui/material";
+
+import Header from "../../components/Header";
 
 import {
   fetchPokemon,
@@ -28,6 +27,7 @@ const pageSize = 6;
 const Home = () => {
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
+  const [shoppingCart, setShoppingCart] = useState([]);
 
   useEffect(() => {
     dispatch(fetchPokemon({ page }));
@@ -39,6 +39,10 @@ const Home = () => {
   const error = useSelector(getPokemonError);
 
   const totalPages = Math.ceil(totalCount / pageSize);
+
+  const handleAddCart = (pokemon) => {
+    setShoppingCart([...shoppingCart, pokemon]);
+  };
 
   const handlePrevious = () => {
     setPage((prevPage) => prevPage - 1);
@@ -59,9 +63,7 @@ const Home = () => {
           </Box>
         ) : (
           <>
-            <Typography variant="h1" sx={{ marginY: 2 }}>
-              Pokemon List
-            </Typography>
+            <Header cartQuantity={shoppingCart.length} />
             <Box sx={{ flexGrow: 1, display: "flex", alignItems: "center" }}>
               <Stack
                 direction="row"
@@ -71,7 +73,8 @@ const Home = () => {
                   <img
                     key={i}
                     src={p.images.small}
-                    style={{ margin: "1.5rem 3rem" }}
+                    style={{ margin: "1.5rem 3rem", cursor: "pointer" }}
+                    onClick={() => handleAddCart(p)}
                   />
                 ))}
               </Stack>
