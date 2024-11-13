@@ -1,7 +1,6 @@
 import { describe, it, expect } from "vitest";
 
-import cartReducer from "../../features/cart/carteSlice";
-import { cartItems, deleteItem } from "./carteSlice";
+import cartReducer, { cartItems, deleteItem } from "./carteSlice";
 
 describe("cartSlice", () => {
   it("should return the initial state", () => {
