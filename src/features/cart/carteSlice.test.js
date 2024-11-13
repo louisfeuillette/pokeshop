@@ -1,23 +1,32 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, beforeEach, afterEach } from "vitest";
 
 import cartReducer, { cartItems, deleteItem } from "./carteSlice";
 
 describe("cartSlice", () => {
-  it("should return the initial state", () => {
-    const initialState = { cartItems: [] };
+  let initialState;
 
+  beforeEach(() => {
+    initialState = {
+      cartItems: [],
+    };
+  });
+  afterEach(() => {
+    initialState = {
+      cartItems: [],
+    };
+  });
+  it("should return the initial state", () => {
     expect(cartReducer(undefined, { type: undefined })).toEqual(initialState);
   });
 
   it("should handle cartItems", () => {
-    const previousState = { cartItems: [] };
     const newItems = [
       { id: 1, name: "Pikachu" },
       { id: 2, name: "Charmander" },
     ];
 
     const action = cartItems(newItems);
-    const state = cartReducer(previousState, action);
+    const state = cartReducer(initialState, action);
 
     expect(state.cartItems).toEqual(newItems);
   });
