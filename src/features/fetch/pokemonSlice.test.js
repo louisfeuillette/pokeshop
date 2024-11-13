@@ -118,6 +118,3 @@ describe("pokemonSlice", () => {
     });
   });
 });
-
-// https://runthatline.com/how-to-mock-fetch-api-with-vitest/
-// https://stackoverflow.com/questions/62518929/how-to-write-tests-jest-enzyme-for-extrareducers-of-createslice

@@ -15,13 +15,13 @@ const root = createRoot(document.getElementById("root"));
 root.render(
   <StrictMode>
     <Provider store={store}>
-      <CssBaseline />
       <GlobalStyles
         styles={{
           "#root": { padding: 0, margin: 0, maxWidth: "none", width: "100vw" },
         }}
       />
       <ThemeProvider theme={theme}>
+        <CssBaseline />
         <App />
       </ThemeProvider>
     </Provider>
