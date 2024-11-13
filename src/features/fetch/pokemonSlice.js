@@ -26,7 +26,6 @@ const pokemonSlice = createSlice({
   initialState,
   reducers: {
     pagination(state, action) {
-      console.log(action);
       state.page = action.payload;
     },
   },

@@ -2,7 +2,10 @@ import { beforeEach, afterEach, describe, it, expect, vi } from "vitest";
 import { configureStore } from "@reduxjs/toolkit";
 import ky from "ky";
 
-import pokemonReducer, { fetchPokemon } from "../fetch/pokemonSlice";
+import pokemonReducer, {
+  fetchPokemon,
+  pagination,
+} from "../fetch/pokemonSlice";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -63,7 +66,16 @@ describe("pokemonSlice", () => {
     expect(state.totalCount).toBe(totalCount);
     expect(state.status).toBe("succeeded");
   });
+  describe("reducers", () => {
+    it("should handle pagination", () => {
+      const page = 2;
 
+      const action = pagination(page);
+      const state = pokemonReducer(initialState, action);
+
+      expect(state.page).toEqual(2);
+    });
+  });
   describe("extraReducers", () => {
     it("sets status loading when fetchPokemon is pending", () => {
       const action = { type: fetchPokemon.pending.type };
