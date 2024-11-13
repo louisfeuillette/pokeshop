@@ -3,11 +3,13 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Home from "../screens/Home";
 import Cart from "../screens/Cart";
 import Header from "../components/Header";
+import Bottom from "../components/Bottom";
 
 const HeaderLayout = () => (
   <>
     <Header />
     <Outlet />
+    <Bottom />
   </>
 );
 

@@ -8,6 +8,7 @@ const initialState = {
   status: "idle",
   error: "",
   totalCount: null,
+  page: 1,
 };
 
 export const fetchPokemon = createAsyncThunk(
@@ -23,7 +24,12 @@ export const fetchPokemon = createAsyncThunk(
 const pokemonSlice = createSlice({
   name: "pokemon",
   initialState,
-  reducers: {},
+  reducers: {
+    pagination(state, action) {
+      console.log(action);
+      state.page = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchPokemon.pending, (state) => {
@@ -41,7 +47,10 @@ const pokemonSlice = createSlice({
   },
 });
 
+export const { pagination } = pokemonSlice.actions;
+
 export const getPokemonList = (state) => state.pokemon.cards;
+export const getPokemonPage = (state) => state.pokemon.page;
 export const getPokemonTotalCount = (state) => state.pokemon.totalCount;
 export const getPokemonError = (state) => state.pokemon.error;
 export const getPokemonStatus = (state) => state.pokemon.status;

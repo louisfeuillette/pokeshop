@@ -13,7 +13,14 @@ const Header = () => {
   }, 0);
 
   return (
-    <Box sx={{ flexGrow: 1, width: "100vw", backgroundColor: "#242424" }}>
+    <Box
+      sx={{
+        flexGrow: 1,
+        width: "100vw",
+        height: "15vh",
+        backgroundColor: "#242424",
+      }}
+    >
       <Stack
         direction="row"
         sx={{

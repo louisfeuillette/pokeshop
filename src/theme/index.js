@@ -22,7 +22,7 @@ const theme = createTheme({
           alignItems: "center",
           justifyContent: "center",
           backgroundColor: "#242424",
-          height: "100vh",
+          height: "70vh",
         },
       },
     },
