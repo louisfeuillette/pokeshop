@@ -11,7 +11,6 @@ import {
   getPokemonStatus,
 } from "../../features/fetch/pokemonSlice";
 import { cartItems } from "../../features/cart/carteSlice";
-import Bottom from "../../components/Bottom";
 
 const Home = () => {
   const dispatch = useDispatch();

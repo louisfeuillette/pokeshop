@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import { Box, Typography, Stack, Badge, IconButton } from "@mui/material";
@@ -6,6 +7,8 @@ import { FaCartShopping } from "react-icons/fa6";
 import { getCartItems } from "../../features/cart/carteSlice";
 
 const Header = () => {
+  const navigate = useNavigate();
+
   const cart = useSelector(getCartItems);
 
   const cartPrice = cart.reduce((acc, curr) => {
@@ -31,7 +34,13 @@ const Header = () => {
         }}
       >
         <Box />
-        <Typography variant="h1" sx={{ marginY: 2, textAlign: "center" }}>
+        <Typography
+          variant="h1"
+          sx={{ marginY: 2, textAlign: "center", cursor: "pointer" }}
+          onClick={() => {
+            navigate("/");
+          }}
+        >
           Pokemon List
         </Typography>
         <Stack
@@ -45,7 +54,12 @@ const Header = () => {
           <Typography variant="h6" sx={{ mr: 2 }}>
             {cartPrice.toFixed(2)}$
           </Typography>
-          <IconButton size={"large"}>
+          <IconButton
+            size={"large"}
+            onClick={() => {
+              navigate("/cart");
+            }}
+          >
             <Badge badgeContent={cart.length} color="secondary">
               <FaCartShopping
                 color="secondary"
