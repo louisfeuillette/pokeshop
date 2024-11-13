@@ -18,7 +18,6 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           display: "flex",
-          flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
           backgroundColor: "#242424",

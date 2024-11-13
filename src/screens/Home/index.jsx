@@ -44,7 +44,7 @@ const Home = () => {
           <CircularProgress />
         </Box>
       ) : (
-        <Box sx={{ display: "flex", alignItems: "center" }}>
+        <Box>
           <Stack
             direction="row"
             sx={{ flexWrap: "wrap", justifyContent: "center" }}
@@ -54,7 +54,6 @@ const Home = () => {
                 key={i}
                 src={p.images.small}
                 style={{
-                  // display: "block",
                   maxWidth: "150",
                   maxHeight: "230px",
                   width: "auto",
