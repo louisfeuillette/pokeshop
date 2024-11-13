@@ -50,16 +50,18 @@ describe("pokemonSlice", () => {
   });
 
   it("should fetchPokemon", async () => {
+    const size = 6;
+
     ky.get = vi.fn(() => ({
       json: vi.fn().mockResolvedValue({ data: newItems, totalCount }),
     }));
 
-    await store.dispatch(fetchPokemon({ page }));
+    await store.dispatch(fetchPokemon({ page, size }));
 
     const state = store.getState().pokemon;
 
     expect(ky.get).toHaveBeenCalledWith(
-      `${API_URL}/cards?q=set.name:"151"&pageSize=6&page=${page}`
+      `${API_URL}/cards?q=set.name:"151"&pageSize=${size}&page=${page}`
     );
 
     expect(state.cards).toStrictEqual(newItems);

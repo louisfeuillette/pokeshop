@@ -12,6 +12,9 @@ import {
 } from "../../features/fetch/pokemonSlice";
 import { cartItems } from "../../features/cart/carteSlice";
 
+let mql = window.matchMedia("(max-width: 1113px)");
+console.log(mql);
+
 const Home = () => {
   const dispatch = useDispatch();
 
@@ -27,7 +30,18 @@ const Home = () => {
   }, [shoppingCart]);
 
   useEffect(() => {
-    dispatch(fetchPokemon({ page }));
+    const screenWidth = window.innerWidth;
+    console.log(screenWidth);
+    const itemsPerPage =
+      screenWidth < 600
+        ? 4
+        : screenWidth < 900
+        ? 6
+        : screenWidth < 1325
+        ? 8
+        : 12;
+
+    dispatch(fetchPokemon({ page, size: itemsPerPage }));
   }, [page]);
 
   const handleAddCart = (pokemon) => {

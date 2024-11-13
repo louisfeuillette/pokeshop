@@ -13,9 +13,9 @@ const initialState = {
 
 export const fetchPokemon = createAsyncThunk(
   "pokemon/fetchPokemon",
-  async ({ page }) => {
+  async ({ page, size }) => {
     const response = await ky
-      .get(`${API_URL}/cards?q=set.name:"151"&pageSize=6&page=${page}`)
+      .get(`${API_URL}/cards?q=set.name:"151"&pageSize=${size}&page=${page}`)
       .json();
     return { data: response?.data, totalCount: response?.totalCount };
   }
