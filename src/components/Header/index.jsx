@@ -1,10 +1,18 @@
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import { Box, Typography, Stack, Badge, IconButton } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Stack,
+  Badge,
+  IconButton,
+  Avatar,
+} from "@mui/material";
 import { FaCartShopping } from "react-icons/fa6";
 
 import { getCartItems } from "../../features/cart/carteSlice";
+import { getUser } from "../../features/user/userSlice";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -14,6 +22,9 @@ const Header = () => {
   const cartPrice = cart.reduce((acc, curr) => {
     return acc + curr.cardmarket.prices.averageSellPrice;
   }, 0);
+
+  const user = useSelector(getUser);
+  console.log(user);
 
   return (
     <Box
@@ -33,7 +44,7 @@ const Header = () => {
           paddingX: 3,
         }}
       >
-        <Box />
+        <Avatar src={user.picture} />
         <Typography
           variant="h1"
           sx={{ marginY: 2, textAlign: "center", cursor: "pointer" }}

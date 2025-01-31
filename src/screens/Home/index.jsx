@@ -27,11 +27,10 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(cartItems(shoppingCart));
-  }, [shoppingCart]);
+  }, [shoppingCart, dispatch]);
 
   useEffect(() => {
     const screenWidth = window.innerWidth;
-    console.log(screenWidth);
     const itemsPerPage =
       screenWidth < 600
         ? 4
@@ -42,7 +41,7 @@ const Home = () => {
         : 12;
 
     dispatch(fetchPokemon({ page, size: itemsPerPage }));
-  }, [page]);
+  }, [page, dispatch]);
 
   const handleAddCart = (pokemon) => {
     setShoppingCart([...shoppingCart, pokemon]);

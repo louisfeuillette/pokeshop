@@ -10,4 +10,5 @@ POKESHOP
 
 Les + bonus  
 [x] application testé  
+[x] oauth2  
 [] données persitante entre session
